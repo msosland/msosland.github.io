@@ -1,3 +1,11 @@
-header {
-  background-color: blue;
+
+
+.cssbox {
+  width: 40%;
+  display: block;
+}
+
+.code {
+  font-family: monospace;
+  text-align: left;
 }
