@@ -2,10 +2,18 @@ body {
   text-align: center;
 }
 
+#article {
+  text-align: left;
+  width: 60%;
+  margin-left: 10%;
+  font-size: 18px;
+}
+
 header {
   margin-top: 10%;
   margin-bottom: 10px;
   text-decoration: none;
+  text-align: center;
   font-family: sans-serif;
   padding-top: 25px;
   padding-bottom: 25px;
@@ -44,10 +52,14 @@ header>a {
 .blogindex>a {
   border: dashed blue 2px;
   color: black;
+  display: block;
   font-size: 22px;
   padding: 15px 25px 15px 25px;
   text-decoration: none;
+}
 
+a:hover {
+  color: red;
 }
 
 footer {
