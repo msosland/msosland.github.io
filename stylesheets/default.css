@@ -3,13 +3,20 @@ html, body {
   height: 100%;
   vertical-align: middle;
 }
+#indexbody {
+  background-color: #e7e7e7;
+  width: 105%;
+  height: 105%;
+  margin-left: -2.5%;
+  margin-top: -2.5%;
+}
 
 
 header {
   /*border-top: solid gray 4px;
   border-bottom: solid gray 4px;*/
   font-family: sans-serif;
-  margin: 5% auto 5px auto;
+  margin: 8% auto 5px auto;
   padding-top: 25px;
   padding-bottom: 25px;
   text-decoration: none;
@@ -20,13 +27,13 @@ header {
 header>a {
   text-decoration: none;
   padding: 25px 2%;
-  color: black;
+  color: #004b7e;
   font-family: sans-serif;
   font-size: 18px;
 }
 
 .content {
-  background-color: #e7e7e7;
+  background-color: #fff;
   margin: 0px auto;
   padding: 10px 0px 10px 0px;
   width: 60%;
@@ -53,7 +60,7 @@ header>a {
   margin: 20px auto;
   padding-top: 10px;
   padding-bottom: 10px;
-  width: 80%;
+  width: 60%;
 }
 .blogindex>a {
   background-color: #e3eef0;
@@ -63,7 +70,7 @@ header>a {
   margin: 20px auto;
   padding: 10px 5px;
   text-decoration: none;
-  width: 85%;
+  width: 90%;
 }
 
 a:hover {

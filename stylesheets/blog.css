@@ -1,4 +1,6 @@
-
+header {
+  margin-top: 3%;
+}
 article {
   text-align: left;
   width: 90%;
@@ -6,15 +8,22 @@ article {
   font-size: 20px;
 }
 
-body {
+html, body {
   background-color: #e7e7e7;
   width: 100%;
+  margin: 0 auto;
 }
 
+.homeprof {
+  display: block;
+  height: 50px;
+  margin: 0 auto;
+}
 
 .cssbox {
   width: 80%;
   display: block;
+  margin: auto;
 }
 
 .code {
