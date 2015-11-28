@@ -1,12 +1,26 @@
 
+article {
+  text-align: left;
+  width: 90%;
+  margin-left: 5%;
+  font-size: 20px;
+}
+
+body {
+  background-color: #e7e7e7;
+  width: 100%;
+}
+
 
 .cssbox {
-  width: 40%;
+  width: 80%;
   display: block;
 }
 
 .code {
+  background-color: #d5d5cd;
   font-family: monospace;
+  padding: 10px;
   text-align: left;
 }
 
