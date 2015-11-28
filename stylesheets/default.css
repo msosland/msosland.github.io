@@ -1,35 +1,37 @@
-body {
+html, body {
   text-align: center;
+  height: 100%;
+  vertical-align: middle;
 }
 
-#article {
-  text-align: left;
-  width: 60%;
-  margin-left: 10%;
-  font-size: 18px;
-}
 
 header {
-  margin-top: 10%;
-  margin-bottom: 10px;
-  text-decoration: none;
-  text-align: center;
-  font-family: sans-serif;
-  padding-top: 25px;
-  padding-bottom: 25px;
   border-top: solid gray 4px;
   border-bottom: solid gray 4px;
+  font-family: sans-serif;
+  margin: 5% auto 0px auto;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  text-decoration: none;
+  text-align: center;
+  width: 60%;
 }
 
 header>a {
   text-decoration: none;
-  padding: 25px;
+  padding: 25px 2%;
   border: solid gray 4px;
   color: black;
   font-family: sans-serif;
   font-size: 18px;
 }
 
+.content {
+  background-color: #e7e7e7;
+  margin: 0px auto;
+  padding: 10px 0px 10px 0px;
+  width: 60%;
+}
 .homeimg {
   border-radius: 5%;
   width: 60%;
@@ -41,7 +43,7 @@ header>a {
 }
 
 .homeprof {
-  width: 80px;
+  display: none;
 }
 
 .homeprof.center {
@@ -49,13 +51,22 @@ header>a {
   margin: 0 auto;
 }
 
+.blogindex {
+  background-color: #9da4ba;
+  margin: 20px auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 80%;
+}
 .blogindex>a {
-  border: dashed blue 2px;
-  color: black;
+  background-color: #e3eef0;
+  color: #65686f;
   display: block;
   font-size: 22px;
-  padding: 15px 25px 15px 25px;
+  margin: 20px auto;
+  padding: 10px 5px;
   text-decoration: none;
+  width: 85%;
 }
 
 a:hover {
@@ -63,14 +74,15 @@ a:hover {
 }
 
 footer {
-  margin-top: 4%;
-  margin-bottom: 10px;
-  text-decoration: none;
-  font-family: sans-serif;
-  padding-top: 20px;
-  padding-bottom: 20px;
   border-top: solid gray 4px;
   border-bottom: solid gray 4px;
+  font-family: sans-serif;
+  margin: 10px auto 10px auto;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  text-decoration: none;
+  text-align: center;
+  width: 60%;
 }
 
 footer>a {
@@ -78,6 +90,6 @@ footer>a {
   color: black;
   font-family: sans-serif;
   font-size: 18px;
-  padding: 20px;
+  padding: 25px 2%;
   text-decoration: none;
 }
