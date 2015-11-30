@@ -45,6 +45,9 @@ header>a {
 .homeimg.center {
   display: block;
 }
+.mypic {
+  height: 100px;
+}
 
 .homeprof {
   display: none;
