@@ -3,14 +3,6 @@ html, body {
   height: 100%;
   vertical-align: middle;
 }
-#indexbody {
-  background-color: #e7e7e7;
-  width: 105%;
-  height: 105%;
-  margin-left: -2.5%;
-  margin-top: -2.5%;
-}
-
 
 header {
   /*border-top: solid gray 4px;
