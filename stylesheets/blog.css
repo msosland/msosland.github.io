@@ -32,6 +32,11 @@ html, body {
   padding: 10px;
   text-align: left;
 }
+.solocode {
+  background-color: #d5d5cd;
+  font-family: monospace;
+  padding: 0px 3px;
+}
 
 h1 {
   font-size: 36px;
