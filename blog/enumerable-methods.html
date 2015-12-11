@@ -24,7 +24,7 @@
         <article id="article">
           <h4>December 10, 2015 </h4>
           <p>
-            The Enumerable module in Ruby allows collection objects to access a subset of behaviors and methods defined in terms of its <span class="solocode">each</span> method. The <span class="solocode">each</span> method will outline how an object iterates through its elements. Once the <span class="solocode">each</span> method is implemented, the Enumerable module is able to provide a wide range on methods onto the collection object.
+            The Enumerable module in Ruby allows a collection object to access a subset of behaviors and methods defined in terms of its <span class="solocode">each</span> method. The <span class="solocode">each</span> method will outline how an object iterates through its elements. Once the <span class="solocode">each</span> method is implemented, the Enumerable module is able to provide a wide range of methods onto the collection object.
           </p>
           <p>
             One very valuable method within the Enumerable module is <span class="solocode">map</span>. <span class="solocode">Map</span> differs from <span class="solocode">each</span> because it returns a new array object, while <span class="solocode">each</span> only returns its original object. Here is how <span class="solocode">each</span> returns a code block:
@@ -47,10 +47,40 @@
             array = [1, 2, 3] <br>
             >> [1, 2, 3] <br>
             array.map {|x| x * 10 } <br>
-            >> [10, 20, 30]
+            >> [10, 20, 30] <br>
+            result = array.map {|x| x * 10 } <br>
+            >> [10, 20, 30] <br>
+            p result <br>
+            [10, 20, 30] <br>
+            >> [10, 20, 30] <br>
           </div>
           <p>
-            From there, the new array can be used however it wants.
+            From there, the new array can be used however it wants. So <span class="solocode">map</span> returns a remapping of the original object into a new transformed array. Meanwhile, the original object remains unchanged:
+          </p>
+          <div class="code">
+            p array <br>
+            [1, 2, 3] <br>
+            >> [1, 2, 3] <br>
+          </div>
+          <p>
+            To change the original array, you can use <span class="solocode">map!</span>, the destructive form of <span class="solocode">map</span>.<span class="solocode">Map!</span> transforms the original object in place.
+          </p>
+          <p>
+            There are other useful ways to use <span class="solocode">map</span>. Combining it with other methods is easy. For example:
+          </p>
+          <div class="code">
+            array = ["mary", "helen", "john", "william"] <br>
+            >> ["mary", "helen", "john", "william"] <br>
+            array.map(&:capitalize) <br>
+            >> ["Mary", "Helen", "John", "William"] <br>
+          </div>
+          <p>
+            Without going too far into blocks and Procs in Ruby, <span class="solocode">map(&:method_name)</span> is an idiomatic way of mapping a method to an object. The above example would be functionally equivalent to <span class="solocode">array.map {|word| word.capitalize }</span>, though in fact the method in the shorthand version is being expressed as a Proc and converted into a block. However, that riveting discussion shall be saved for another blog post!
+          </p>
+          <p>
+            Hopefully this has been a helpful introduction to the value of the <span class="solocode">map</span> method and its primary difference versus <span class="solocode">each</span>. Importantly, the <span class="solocode">collect</span> method is the exact same method as <span class="solocode">map</span> by a different name, so if you see it, you should now know what its doing! Hasta pasta amigos!
+          </p>
+
 
 
 
@@ -62,9 +92,9 @@
       <a href="index.html">Blog Index</a>
       <a href="arrays-hashes.html">Previous Post</a>
     </nav>
-    <section id="comments">
+    <!-- <section id="comments">
       <h6>Comments?</h6>
-    </section>
+    </section> -->
     <div id="profile">
       <img src="../imgs/profile.png" alt="profile" class="homeprof"/>
     </div>
