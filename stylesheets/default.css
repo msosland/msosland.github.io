@@ -48,11 +48,18 @@ header>a {
   margin: 0 auto;
 }
 
-/*.blogindex {
+.blogindex {
   background-color: #e3eef0;
   margin: 0px auto;
   width: 70%;
-}*/
+}
+.blogindex>a {
+  display: block;
+  text-decoration: none;
+  font-size: 22px;
+  color: #505050;
+  padding: 10px 0px;
+}
 
 .post{
   background-color: #e3eef0;
