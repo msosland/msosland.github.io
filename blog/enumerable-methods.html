@@ -24,9 +24,33 @@
         <article id="article">
           <h4>December 10, 2015 </h4>
           <p>
-            The Enumerable module in Ruby allows collection objects to access a subset of behaviors and methods defined in terms of its <span class="solocode">each</span> method. The <span class="solocode">each</span> will outline how an object iterates through its elements. Once the <span class="solocode">each</span> method is implemented, th Enumerable module is able to provide a wide range on methods onto the collection object.
+            The Enumerable module in Ruby allows collection objects to access a subset of behaviors and methods defined in terms of its <span class="solocode">each</span> method. The <span class="solocode">each</span> method will outline how an object iterates through its elements. Once the <span class="solocode">each</span> method is implemented, the Enumerable module is able to provide a wide range on methods onto the collection object.
           </p>
           <p>
+            One very valuable method within the Enumerable module is <span class="solocode">map</span>. <span class="solocode">Map</span> differs from <span class="solocode">each</span> because it returns a new array object, while <span class="solocode">each</span> only returns its original object. Here is how <span class="solocode">each</span> returns a code block:
+          </p>
+          <div class="code">
+            array = [1, 2, 3] <br>
+            >> [1, 2, 3] <br>
+            array.each {|x| x * 10 } <br>
+            >> [1, 2, 3] <br>
+            result = array.each {|x| x * 10 } <br>
+            >> [1, 2, 3] <br>
+            print result <br>
+            [1, 2, 3] <br>
+            >> nil <br>
+          </div>
+          <p>
+            <span class="solocode">Each</span> does not save the values resulting from running its code block; they are discarded, and the only thing left to return is the original receiver object. Meanwhile <span class="solocode">map</span>'s return value is much more clear:
+          </p>
+          <div class="code">
+            array = [1, 2, 3] <br>
+            >> [1, 2, 3] <br>
+            array.map {|x| x * 10 } <br>
+            >> [10, 20, 30]
+          </div>
+          <p>
+            From there, the new array can be used however it wants.
 
 
 
