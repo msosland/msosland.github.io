@@ -26,12 +26,25 @@ html, body {
   margin: auto;
 }
 
+.bonus {
+  background: #e3eef0;
+  color: navy;
+  font-family: arial;
+  font-size: 18px;
+  width: 95%;
+  margin: 0 auto;
+}
+.monocode {
+  font-family: monospace;
+  width: 90;
+}
 .code {
   background-color: #d5d5cd;
   font-family: monospace;
   padding: 10px;
   text-align: left;
 }
+
 .solocode {
   background-color: #d5d5cd;
   font-family: monospace;

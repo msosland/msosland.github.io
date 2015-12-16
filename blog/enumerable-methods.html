@@ -65,6 +65,30 @@
           <p>
             To change the original array, you can use <span class="solocode">map!</span>, the destructive form of <span class="solocode">map</span>.<span class="solocode">Map!</span> transforms the original object in place.
           </p>
+          <div class="code">
+            array = [1, 2, 3]<br>
+            >> [1, 2, 3]<br>
+            arrap.map! {|x| x * 10}<br>
+            >> [10, 20, 30]<br>
+            array<br>
+            >> [10, 20, 30]<br>
+          </div>
+          <br>
+          <p class="bonus">
+            Actually, there is a way to change an array with <span class="monocode">each</span>, but it's rather complicated! It requires the code block to explicitly change the array values, as shown below:
+          </p>
+            <div class="bonus">
+              <br>
+              array = [1, 2, 3]<br>
+              >> [1, 2, 3]<br>
+              array.each {|x| array[array.index(x)] = x * 10}<br>
+              >> [10, 20, 30]<br>
+              <br>
+            </div>
+          <p class="bonus">
+            Even though the above code transforms the array successfully, <span class="monocode">map!</span> is the preferred method for changing an array in place.
+          </p>
+
           <p>
             There are other useful ways to use <span class="solocode">map</span>. Combining it with other methods is easy. For example:
           </p>
