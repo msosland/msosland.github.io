@@ -67,7 +67,7 @@ header>a {
   text-decoration: none;
 }
 
-#map, #horizon, #books, #branch {
+#map, #horizon, #books, #branch, #classroom{
   height: 150px;
   width: 180px;
 }
