@@ -54,3 +54,19 @@ html, body {
 h1 {
   font-size: 36px;
 }
+@media screen and (max-width: 480px) {
+  header {
+    width: 95%;
+  }
+  header>a {
+    padding: 25px 1%;
+  }
+  .homeimg {
+    width: 90%;
+  }
+
+  .content {
+    width: 95%;
+  }
+
+}
