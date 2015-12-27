@@ -127,4 +127,11 @@ a:hover {
   .aboot {
     width: 85%;
   }
+  .indextable {
+    width: 90%;
+  }
+  #map, #horizon, #books, #branch, #classroom, #potato, .gfx, .desc {
+  height: 35%;
+  width: 60%;
+}
 }
