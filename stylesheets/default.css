@@ -110,6 +110,34 @@ a:hover {
   margin: 10px auto;
 }
 
+#counts {
+  list-style-type: none;
+  display: inline;
+  margin-left: -40px;
+}
+
+.but {
+  height: 50px;
+  width: 120px;
+  background-color: #66cd00;
+  border-radius: 5px;
+  color: white;
+  margin: 10px auto;
+  display: inline-block;
+  font-size: 25px;
+  padding-top: 20px;
+}
+
+#knowledge {
+  color: #00688b;
+  font-family: sans-serif;
+}
+
+.game {
+  width: 70%;
+  margin: auto;
+}
+
 @media screen and (max-width: 480px) {
   header {
     width: 90%;
