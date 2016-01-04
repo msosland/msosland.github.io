@@ -47,9 +47,14 @@ var Tanzania = new Country('Tanzania', 'Dodoma', '50 million', 'Dar es Salaam');
 var Australia = new Country('Australia', 'Canberra', '24 million', 'Sydney');
 var Cameroon = new Country('Cameroon', 'Yaound\351', '22 million', 'Douala');
 var Ecuador = new Country('Ecuador', 'Quito', '16 million', 'Guayaquil');
-var Nigeria = new Country('Nigeria', 'Abuja', '182 billion', 'Lagos');
+var Nigeria = new Country('Nigeria', 'Abuja', '182 million', 'Lagos');
 var Turkey = new Country('Turkey', 'Ankara', '77 million', 'Istanbul');
 var Vietnam = new Country('Vietnam', 'Hanoi', '91 million', 'Ho Chi Minh City');
+var Kazakhstan = new Country('Kazakhstan', 'Astana', '17 million', 'Almaty');
+var Pakistan = new Country('Pakistan', 'Islamabad', '199 million', 'Karachi');
+var Belize = new Country('Belize', 'Belmopan', '340 thousand', 'Belize City');
+var Syria = new Country('Syria', 'Damascus', '17 million', 'Aleppo');
+var Myanmar = new Country('Myanmar', 'Naypyidaw', '51 million', 'Yangon');
 
 
 //here I will create an array of all the country objects in case I want to use it later
