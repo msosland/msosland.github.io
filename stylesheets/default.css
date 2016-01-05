@@ -61,14 +61,18 @@ header>a {
 .desc {
   text-align: right;
 }
-
+.contact {
+  color: #36454f;
+  font-size: 22px;
+  margin: 30px auto;
+}
 .desc a {
   color: #505050;
   font-size: 22px;
   text-decoration: none;
 }
 
-#map, #horizon, #books, #branch, #classroom, #potato{
+#map, #horizon, #books, #branch, #classroom, #potato, #sorting{
   height: 150px;
   width: 180px;
 }
@@ -158,7 +162,7 @@ a:hover {
   .indextable {
     width: 90%;
   }
-  #map, #horizon, #books, #branch, #classroom, #potato, .gfx, .desc {
+  #map, #horizon, #books, #branch, #classroom, #potato, #sorting, .gfx, .desc {
   height: 35%;
   width: 60%;
 }
