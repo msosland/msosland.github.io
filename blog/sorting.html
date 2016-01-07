@@ -85,10 +85,10 @@
             }<br>
           </div>
           <p>
-            The nested for loops above are a red flag when it comes to describing how expensive the algorithm is. The first time Bubble Sort makes its way through the array, it makes <span class="solocode">(n-1)</span> comparisons between pairs, where N is the length of the array. The second time, it makes <span class="solocode">(n-2)</span> comparisons since the final element is already in place. Calculating out the number of steps, we get <br><span class="solocode">(n-1) + (n-2) + (n-3) + ... + 1 = n*(n-1)/2 = n<sup>2</sup>/2 - n/2</span> comparisons. For large datasets and independent of computing power, this algorithm as has a big O complexity of n<sup>2</sup>. Thus, as the length of the array grows, the proportional running time of this algorithm in the worst-case is quadratic.
+            The nested for loops above are a red flag when it comes to describing how expensive the algorithm is. The first time Bubble Sort makes its way through the array, it makes <span class="solocode">(n-1)</span> comparisons between pairs, where <span class="solocode">n</span> is the length of the array. The second time, it makes <span class="solocode">(n-2)</span> comparisons since the final element is already in place. Calculating out the number of steps, we get <br><span class="solocode">(n-1) + (n-2) + (n-3) + ... + 1 = n*(n-1)/2 = n<sup>2</sup>/2 - n/2</span> comparisons. For large datasets and independent of computing power, this algorithm as has a big O complexity of <span class="solocode">n<sup>2</sup></span>. Thus, as the length of the array grows, the proportional running time of this algorithm in the worst-case is quadratic.
           </p>
           <p>
-            Bubble Sort is a stable algorithm, which means that two elements that have the same value would remain in the same order relative to each other throughout - they would never cross paths or be swapped. Bubble Sort's memory usage is no larger than the original array, because the swaps are essentially taking place within the array. One redeeming feature of Bubble Sort is that it can be tweaked to detect if a list is already sorted or mostly sorted,(by adding a boolean variable to check if any swaps are made in one pass) in which case it will save the effort of continuing to go through the data if it is already in order. Not all algorithms are able to adapt in this manner!  Unfortunately, due to it's slow average running time, and due to a large number of other sorting options available, Bubble Sort is rarely used in practice anymore. Next up, Merge Sort!
+            Bubble Sort is a stable algorithm, which means that two elements that have the same value would remain in the same order relative to each other throughout - they would never cross paths or be swapped. Bubble Sort's memory usage is no larger than the original array, because the swaps are essentially taking place within the array with the help of one temporary variable. One redeeming feature of Bubble Sort is that it can be tweaked to detect if a list is already sorted or mostly sorted. By adding a boolean variable to check if any swaps are made in a pass, it will save the effort of continuing to go through the data if it is already in order. Not all algorithms are able to adapt in this manner!  Unfortunately, due to it's slow average running time, and due to a large number of other sorting options available, Bubble Sort is rarely used in practice anymore. Next up, Merge Sort!
           </p>
           <p>
             Merge Sort is an efficient sorting algorithm that runs faster than Bubble Sort's quadratic time in even the worst-case. It works by dividing up the data into halves until each element is in its own sublist. Then the algorithm recursively merges subjlists back together into sorted sublists until there is only one list left. Here are the steps that Merge Sort takes when it sorts a list:
@@ -111,7 +111,7 @@
             1 2 3 4 5 7 9 10<br>
           </div>
           <p>
-            The merging works by simply comparing the first element in each sublist against one another. If the first element from the left is smaller, then the next comparison will be between the second element from the left sublist and the first from the right. The sort can be coded to be stable by always taking the element from the left sublist when the values are equal - that way the original order does not change.
+            The merging works by simply comparing the first element in each sublist against one another. If the first element from the left is smaller, then the next comparison will be between the second element from the left sublist and the first from the right. The sort can be coded to be stable by always taking the element from the left sublist when the values are equal - that way the original order of equal values does not change.
           </p>
             <p> The code for Merge Sort is as follows: </p>
           <div class="code">
@@ -156,16 +156,16 @@
             The merging of the sublists takes linear time, so <span class="solocode">n</span> where <span class="solocode">n</span> is the length of the array. If <span class="solocode">T(n)</span> is the number of comparisons to mergeSort an input of size <span class="solocode">n</span>, that should be equal to <span class="solocode">T(n/2) + T(n/2) + n</span> for the left half, right half, and merging, respectively. If we calculate out this recursive relation, we eventually end up with <span class="solocode">T(n) = n + nlogn = O(nlogn)</span>. Merge Sort works in linearithmic time in the worst case, faster than Bubble Sort's quadratic time.
           </p>
           <p>
-            One major drawback to Merge Sort is that it takes up a lot of memory; the algorithm as it was originally introduced creates new space for all of its elements as it is merging its sublists. The extra memory usage is <span class="solocode">n</span>, the length of the original data. (As a reminder, Bubble Sort sorted the items in place.) As mentioned previously, Merge Sort is usually coded as a stable algorithm. As long as the element from the left sublist is taken in the event of a tie, no equal valued elements will cross paths during the sort. As it is coded above, there is limited adaptability. So if the dataset is already in order, the functions above will still go through the process of dividing up the original dataset and merging.
+            One major drawback to Merge Sort is that it takes up a lot of memory; the algorithm as it was originally introduced creates new space for all of its elements as it is merging its sublists. The extra memory usage is <span class="solocode">n</span>, the length of the original data. (As a reminder, Bubble Sort sorted the items in place.) As mentioned previously, Merge Sort is usually coded as a stable algorithm. As long as the element from the left sublist is taken in the event of a tie, no equal valued elements will cross paths during the sort. As it is coded above, there is limited adaptability. So if the dataset is already in order, the functions above will still go through the process of dividing up the original dataset and merging, wasting resources.
           </p>
           <p>
-            Merge Sort is a very important sorting algorithm today. Although it was created in 1945 originally, it is still widely used. Many tweaks have been implemented to improve upon Merge Sort's initial deficiencies, and many newer sorting algorithms either use Merge Sort or features of Merge Sort for certain datasets. For example, Timsort is a hybrid algorithm that combines ideas from Merge Sort as well as Insertion Sort, and it is used as the default built-in sort for Android, Java, and Python. Oddly enough, different languages have different default sorting algorithms under the hood, or may use multiple by default depending on the situation. Java does use Merge Sort for objects. C++ and Python use Merge Sort when a stable sort is needed. And Firefox uses Merge Sort for JavaScript. Merge Sort is a good choice for linked lists, for example, where the data can only be accessed sequentially, and some other sorting algorithms may be unable to sort linked lists altogether. Of course, a programmer can always code a sorting function however she wants to in order to avoid using the built-in sort for that language!
+            Merge Sort is a very important sorting algorithm today. Although it was created in 1945 originally, it is still widely used. Many tweaks have been implemented to improve upon Merge Sort's initial deficiencies, and many newer sorting algorithms either use Merge Sort or features of Merge Sort for certain datasets. For example, Timsort is a hybrid algorithm that combines ideas from Merge Sort as well as Insertion Sort, and it is used as the default built-in sort for Android, Java, and Python in certain situations. Oddly enough, different languages use different default sorting algorithms under the hood of different built-in methods, and some languages may use multiple depending on the situation. Java does use Merge Sort for objects. C++ and Python use Merge Sort when a stable sort is needed. And Firefox uses Merge Sort for JavaScript. Merge Sort is a good choice for linked lists also, where the data can only be accessed sequentially, whereas some other sorting algorithms may be unable to sort linked lists altogether. Of course, a programmer can always code a sorting function however she wants to in order to avoid using the built-in sorting methods for that language!
           </p>
           <p>
             Lastly, I will talk about Quick Sort. Quick Sort is often faster than Merge Sort in practice when sorting arrays, and it uses less memory than Merge Sort. As you will see, it is not a stable sort, which means that equal-valued items can cross each other from their initial position. Chrome uses Quick Sort for JavaScript, and Unix, C, Python, Java, and Matlab all use Quick Sort in certain situations as well.
           </p>
           <p>
-            Quick Sort works by partitioning the original array around a pivot point. For the algorithm to work well, the pivot element ought to be close to the median of all the values in the array. (There are minor coding improvements to assure a good value without taking up too much time.) Once a pivot point is selected, the algorithm starts from both ends of the array and moves inward. When an element from the left counter is found that is greater than the pivot element, AND an element on the right is found to be less than the pivot element, they are swapped. When the left counter and right counter cross, the pivot is swapped with the right counter (now on the left). At this point, all items to the left of the original pivot will be less than the pivot, and all items to the right will be greater. Now, Quick Sort is performed on each half, recursively until the halves are less than two in length. Here is what it looks like:
+            Quick Sort works by partitioning the original array around a pivot point. For the algorithm to work well, the pivot element ought to be close to the median of all the values in the array. (There are minor coding improvements to assure a good value without taking up too much time.) Once a pivot point is selected, the algorithm starts from both ends of the array and moves inward. When an element from the left mark is found that is greater than the pivot element, AND an element on the right is found to be less than the pivot element, they are swapped. When the left mark and right mark cross, the pivot is swapped with the right mark (now on the left). At this point, all items to the left of the original pivot will be less than the pivot, and all items to the right will be greater. Now, Quick Sort is performed on each half, recursively until the halves are less than two in length. Here is what it looks like:
           </p>
           <div class="code">
             [5, 2, 9, 0, 7, 3, 4, 6, 1]<br>
@@ -184,7 +184,7 @@
             [5, 2, 1, <span class="red">0</span>, 7, 3, 4, <span class="red">6</span>, 9]<br>
             [5, 2, 1, 0, <span class="red">7</span>, 3, <span class="red">4</span>, 6, 9]<br>
             // 4 < 5 and 7 > 5, so they are swapped<br>
-            [5, 2, 1, 0, <span class="red">4</span>, 3, <span class="red">5</span>, 6, 9]<br>
+            [5, 2, 1, 0, <span class="red">4</span>, 3, <span class="red">7</span>, 6, 9]<br>
             // now the marks cross<br>
             [5, 2, 1, 0, 4, <span class="red">3</span>, <span class="red">7</span>, 6, 9]<br>
             // so the pivot is switched<br>
@@ -194,15 +194,40 @@
             At this point, all the values to the left of the 5 are less than 5, and all the values to the right are greater. Now, Quick Sort is performed again on each half. The code is as follows:
           </p>
           <div class="code">
-            <br>
+            function quickSort(array, left, right) {<br>
+                &nbsp;&nbsp;var pivot = array[Math.floor((left+right)/2)];<br>
+                &nbsp;&nbsp;var i = left;<br>
+                &nbsp;&nbsp;var j = right;<br>
+                &nbsp;&nbsp;var temp;<br>
+                &nbsp;&nbsp;while (i <= j) {<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;while (array[i] < pivot)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i++;<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;while (array[j] > pivot)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j--;<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;if (i <= j) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;temp = array[i];<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array[i] = array[j];<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array[j] = temp;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i++;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j--;<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;if (left < j)<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;quickSort(array, left, j);<br>
+                &nbsp;&nbsp;if (i < right)<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;quickSort(array, i, right);<br>
+              &nbsp;&nbsp;return array;<br>
+            }<br>
           </div>
           <p>
-            Again, with proper implementation Quick Sort often works faster than Merge Sort, though usually still in linearithmic time. One quick technique is to actually shuffle the array at the beginning of the algorithm, which (almost) guarantees that the array is not already sorted. If the array were already sorted, the pivot would consistently be the lowest element, and the algorithm would degrade to quadratic time.
+            Again, with proper implementation Quick Sort often works faster than Merge Sort, though usually still in linearithmic time. Also, there are many different ways to code Quick Sort, especially in different languages. In the above code, the pivot is actually taken from the middle of the array, not the beginning. Some programmers also simplify their code by creating arrays for the left and right halves, though obviously at the expense of doubling their space usage. When using the first index as the pivot, one technique is to actually shuffle the array at the beginning of the algorithm, which (almost) guarantees that the array is not already sorted. If the array were already sorted, the pivot would consistently be the lowest element, and the algorithm would degrade to quadratic time.
           </p>
           <p>
-            It is important to realize that there are dozens of sorting algorithms, and many improvements have been made upon existing ones. However, Quick Sort and Merge Sort have each stood the test of time and are both very common today - with implementation fixes to try and ensure best possible run times.
+            It is important to realize that there are dozens of sorting algorithms, and many improvements have been made upon existing ones. Some sorting algorithms have been improved with multiple variations throughout decades of scrutiny. However, the backbone of Quick Sort and Merge Sort have each stood the test of time and they are both very common today - with implementation fixes to try and ensure best possible run times.
           </p>
-
+          <p>
+            When large amounts of data need to be sorted and complexity, stability, memory usage, and adaptability are important, there are <a href="https://en.wikipedia.org/wiki/Sorting_algorithm">many sorting algorithms</a> from which to choose. Often, the best solution may be to use different algorithms in different situations. Learning about sorting algorithms is important to making the best decisions when built-in methods won't do, and it is a good introduction to the importance of algorithms in general.
+          </p>
 
 
 
