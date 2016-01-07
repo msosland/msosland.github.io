@@ -57,6 +57,9 @@ code {
   padding: 0px 3px;
 }
 
+.red {
+  color: red;
+}
 h1 {
   font-size: 36px;
 }
