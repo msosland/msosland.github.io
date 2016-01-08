@@ -72,13 +72,28 @@ header>a {
   text-decoration: none;
 }
 
-#map, #horizon, #books, #branch, #classroom, #potato, #sorting{
+#map, #horizon, #books, #branch, #classroom, #potato, #sorting, #cheatsheet{
   height: 150px;
   width: 180px;
+}
+.pageedge {
+  margin: 0px auto;
+}
+.cheats {
+  width: 60%;
+  margin: 0px auto;
+}
+
+.leftside{
+  width: 50%;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 20px;
 }
 
 
 footer {
+  clear: both;
   font-family: sans-serif;
   margin: 0px auto 10px auto;
   padding-top: 25px;
