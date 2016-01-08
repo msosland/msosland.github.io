@@ -76,19 +76,12 @@ header>a {
   height: 150px;
   width: 180px;
 }
-.pageedge {
-  margin: 0px auto;
-}
-.cheats {
-  width: 60%;
-  margin: 0px auto;
-}
 
-.leftside{
-  width: 50%;
-  float: left;
-  margin-right: 10px;
-  margin-bottom: 20px;
+.leftside, .rightside{
+  background-color: #fff;
+  width: 45%;
+  display: inline-block;
+  text-align: left;
 }
 
 
