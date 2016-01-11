@@ -150,7 +150,7 @@ a:hover {
   margin: auto;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
   header {
     width: 90%;
   }
@@ -167,11 +167,14 @@ a:hover {
   .aboot {
     width: 85%;
   }
+  .game {
+    width: 99%;
+  }
   .indextable {
     width: 90%;
   }
-  #map, #horizon, #books, #branch, #classroom, #potato, #sorting, .gfx, .desc {
-  height: 35%;
-  width: 60%;
+  #map, #horizon, #books, #branch, #classroom, #potato, #sorting,#cheatsheet, .gfx, .desc {
+  height: 120px;
+  width: 120px;
 }
 }
