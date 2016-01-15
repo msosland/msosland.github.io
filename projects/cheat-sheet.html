@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DBC Picture Me Bloggin'</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/default.css">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/cheatsheet.css">
+  </head>
+  <body>
+    <header>
+        <a href="../index.html" class="me">Home</a>
+        <a href="#" class="me">Resume</a>
+        <a href="../contacts.html" class="me">Contact</a>
+        <a href="../projects/index.html" class="portfolio">Projects</a>
+        <a href="index.html" class="portfolio">Technical Blog</a>
+    </header>
+
+    <main>
+      <section class="content">
+        <h1>SQL Cheat Sheet</h1>
+        <h6>Note: Different Systems (MySQL, SQL Server, Oracle, MS Access) May Use Slight Variations in Syntax </h6>
+        <article class="columns">
+        <!-- <section class="leftside"> -->
+
+            <h3>In The Beginning...</h3>
+            CREATE DATABASE world_database;<br>
+            CREATE TABLE world (country varchar(255), continent varchar(255), population int);<br>
+            ALTER TABLE world ADD area varchar(255);<br>
+            ALTER TABLE world DROP COLUMN population;<br>
+            ALTER TABLE world MODIFY COLUMN area int;<br>
+
+            <span class="comment">require NOT NULL, require UNIQUE value, set DEFAULT value:, set PRIMARY KEY, set FOREIGN KEY</span><br>
+            CREATE TABLE Orders (<br>
+            O_Id int NOT NULL UNIQUE,<br>
+            OrderNo int NOT NULL,<BR>
+            City varchar(255) DEFAULT 'Dallas',<br>
+            P_Id int FOREIGN KEY REFERENCES Persons(P_Id),<br>
+            PRIMARY KEY O_Id);<br>
+
+          <p>
+            <h3>Inserting, Updating, Deleting</h3>
+            INSERT INTO world (country, area, population) VALUES ('Petoria', '600000', '32000000');<br>
+            UPDATE world SET country='Homerland' WHERE country='Petoria';<br>
+            DELETE FROM world WHERE country='Homerland';<br>
+            <span class="comment">deletes all rows without deleting table structure:</span><br>
+            DELETE * FROM world;<br>
+          </p>
+
+          <p>
+            <h3>All Columns, Some Columns, Distinct Values, Hybrid Values, Aliases</h3>
+            SELECT * FROM countries;<br>
+            SELECT winner, subject FROM nobel;<br>
+            SELECT DISTINCT continent FROM countries;<br>
+            <span class="comment">per capita GDP:</span><br>
+            SELECT name, gdp/population FROM world;<br>
+            SELECT name, gdp/population AS [GDP Per Capita] FROM world;<br>
+            <span class="comment">combining columns:</span><br>
+            SELECT name, Address+', '+City+', '+ZipCode+', '+Country AS Address FROM Customers;<br>
+
+          </p>
+          <p>
+            <h3>TOP, LIMIT, FIRST, LAST</h3>
+            <span class="comment">TOP not always supported:</span><br>
+            SELECT TOP 5 * FROM world;<br>
+            SELECT TOP 50 PERCENT * FROM world;<br>
+            SELECT * FROM world LIMIT 5;<br>
+            <span class="comment">FIRST, LAST only in MS Access:</span><br>
+            SELECT FIRST(country) FROM world;<br>
+            SELECT LAST(country) FROM world;<br>
+
+          </p>
+
+          <p>
+            <h3>ROUND, SUM, MAX, MIN, AVG, COUNT</h3>
+            <span class="comment">round to nearest 1000:</span><br>
+            SELECT ROUND(area, -3) FROM countries;<br>
+            <span class="comment">round to two decimals:</span><br>
+            SELECT ROUND(price, 2) FROM products;<br>
+            SELECT SUM(population) FROM countries;<br>
+            SELECT MAX(population) FROM countries;<br>
+            <br>
+            SELECT country, population FROM countries WHERE population=(SELECT MIN(population) FROM world);<br>
+            SELECT AVG(population) AS PopulationAverage FROM world;<br>
+            <span class="comment">select countries with above average population:</span><br>
+            SELECT country, population FROM world WHERE population>(SELECT AVG(population) FROM world);<br>
+            SELECT COUNT(*) AS NumberOfCountries FROM world;<br>
+            SELECT COUNT(DISTINCT continent) FROM world;<br>
+
+          </p>
+
+          <p>
+            <h3>AND, OR, BETWEEN, <, >, <=, >=</h3>
+            SELECT subject, winner FROM nobel WHERE subject='Physics' OR subject='Chemistry';<br>
+            SELECT subject, winner FROM nobel WHERE subject='Physics' AND year&#60;=1980;<br>
+            SELECT * FROM nobel WHERE subject='Physics' AND yr&#60;1980 OR subject='Chemistry' AND year>=1984;<br>
+            SELECT subject, winner FROM nobel WHERE subject='Literature' AND year BETWEEN 1980 AND 1989;<br>
+            SELECT subject, winner FROM nobel<br> WHERE subject NOT BETWEEN 'A' AND 'M';<br>
+          </p>
+
+     <!--    </section>
+        <section class="rightside"> -->
+          <p>
+            <h3>IN, NOT IN, LIKE, NOT LIKE</h3>
+            SELECT * FROM nobel WHERE subject IN ('Chemistry', 'Physics', 'Biology');<br>
+            SELECT * FROM nobel WHERE subject NOT IN ('Literature', 'Peace', 'Medicine');<br>
+            <span class="comment">% as substitute for zero or more chars:</span><br>
+            SELECT winner FROM nobel WHERE winner LIKE 'John%';<br>
+            SELECT winner FROM nobel WHERE winner NOT LIKE 'a%';<br>
+            SELECT winner FROM nobel WHERE winner LIKE '%Smith';<br>
+            SELECT country FROM world WHERE name LIKE '%united%';<br>
+            <span class="comment">_ as substitute for one char:</span><br>
+            SELECT country FROM world WHERE name LIKE '_ngl_nd';<br>
+            <span class="comment">[] for specific chars:</span><br>
+            SELECT country FROM world WHERE name LIKE '[abc]%';<br>
+            SELECT country FROM world WHERE name NOT LIKE '[xyz]%';<br>
+            SELECT country FROM world WHERE name LIKE '[!xyz]%';<br>
+
+        </p>
+        <p>
+          <h3>ORDER BY, GROUP BY, HAVING</h3>
+          SELECT * FROM nobel ORDER BY year ASC;<br>
+          SELECT * FROM world ORDER BY population DESC;<br>
+          SELECT * FROM nobel ORDER BY subject in ('Chemistry', 'Physics'), subject ASC, winner DESC;<br>
+          <span class="comment">returns number of countries per continent:</span><br>
+          SELECT continent, COUNT(name) AS NumberOfCountries FROM world GROUP BY continent;<br>
+          <span class="comment">HAVING instead of WHERE for use with aggregate functions:</span><br>
+          SELECT continent FROM world GROUP BY continent HAVING SUM(population)>10000000;<br>
+
+        </p>
+        <p>
+          <h3>CASE/WHEN</h3>
+            SELECT name, CASE WHEN continent='Oceania' THEN 'Australasia' ELSE continent END FROM world;<br><br>
+            SELECT name, CASE<br>
+            WHEN continent='Europe' THEN 'Eurasia'<br>
+            WHEN continent='Caribbean' AND name LIKE 'A%' THEN 'America'<br>
+            WHEN continent='Asia' THEN 'ASIAAAAAA'<br>
+            ELSE continent END FROM world;<br>
+        </p>
+        <p>
+          <h3>JOINS, UNION</h3>
+          <span class="comment">working with multiple tables:</span><br>
+          <span class="comment">INNER JOIN returns all rows from both tables as long as there is a match between the columns in both tables:</span><br>
+          SELECT goal.player, goal.teamid, game.stadium, game.mdate FROM game INNER JOIN goal ON (game.id=goal.matchid) WHERE goal.teamid='GER';<br>
+          <span class="comment">LEFT JOIN returns all rows from table1 and returns null if there is no match with the second table:</span><br>
+          SELECT customers.Name, orders.Product FROM customers LEFT JOIN orders ON customers.customerID=orders.CustomerID ORDER BY customers.Name<br>
+          <span class="comment">RIGHT JOIN returns all rows from table2 and returns null if there is no match with the first table:</span><br>
+          SELECT orders.product, employees.firstName FROM orders RIGHT JOIN employees ON orders.employeeID=employees.employeeID ORDER BY orders.product<br>
+          <span class="comment">FULL OUTER JOIN returns all rows from both tables even when some rows do not have a match - there may be null values in both columns:</span><br>
+          SELECT Customers.CustomerName, Orders.OrderID FROM Customers FULL OUTER JOIN Orders ON Customers.CustomerID=Orders.CustomerID ORDER BY Customers.CustomerName;<br>
+          <span class="comment">UNION combines multiple select statements into the same column:</span><br>
+          SELECT city FROM Customers UNION SELECT city FROM SUPPLIERS;<br>
+        </p>
+
+        <p>
+          <h3>Other Quirks</h3>
+          <span class="comment">SELECT INTO copies from one table to another:</span><br>
+          SELECT * INTO CustomersBackup2015 FROM Customers;<br>
+          <span class="comment">escaping:</span><br>
+          SELECT * FROM nobel WHERE winner='Eugene O\'neill';<br>
+          <span class="comment">capitalizing whole name:</span><br>
+          SELECT UCASE(country) FROM world;<br>
+          <span class="comment">length:</span><br>
+          SELECT Customer, LEN(nickname) AS LengthOfNickname FROM Customers;<br>
+          <span class="comment">drop whole table or database:</span><br>
+          DROP TABLE world;<br>
+          DROP DATABASE world_database;<br>
+        </p>
+
+
+   <!--      </section> -->
+
+
+        <!-- </article> -->
+      </article>
+    </section>
+    </main>
+
+
+    <footer>
+      <a href="https://github.com/msosland"><img src="../imgs/github.png" alt="Github" id="github"></a>
+      <a href="https://www.linkedin.com/in/marshallsosland"><img src="../imgs/linkedin.png" alt="LinkedIn" id="linkedin"</a>
+      <a href="https://www.facebook.com/marshall.sosland"><img src="../imgs/facebook.png" alt="Facebook" id="facebook"</a>
+      <a href="https://twitter.com/MarshallOnEarth"><img src="../imgs/twitter.png" alt="Twitter" id="twitter"></a>
+    </footer>
+
+  </body>
+</html>
