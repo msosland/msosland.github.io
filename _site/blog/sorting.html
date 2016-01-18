@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DBC Picture Me Bloggin'</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/default.css">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/blog.css">
+  </head>
+  <body>
+    <header>
+        <a href="../index.html" class="me">Home</a>
+        <a href="#" class="me">Resume</a>
+        <a href="../contacts.html" class="me">Contact</a>
+        <a href="../projects/index.html" class="portfolio">Projects</a>
+        <a href="index.html" class="portfolio">Technical Blog</a>
+    </header>
+
+    <main>
+      <section class="content">
+        <h1>House in Order</h1>
+        <h2>Bubble Sort, Merge Sort, and Quick Sort in JavaScript</h2>
+
+
+        <article id="article">
+          <h4>January 6, 2016 </h4>
+          <p>
+            The study of algorithms is an important topic in computer science, and an optimal algorithm can be much more important for the efficiency of a program than raw computing power. There are many types of algorithms used for a wide range of problems and there are many data structures that can be used to organize large amounts of data. In this article, I will only scratch the surface of an immense field by introducing three sorting algorithms which at their core deal with putting the elements of a list in a specific order. Bubble Sort, Merge Sort, and Quick Sort will provide a fundamental introduction to several algorithmic concepts. For the purposes of this article, I will treat the data as an array, which can be accessed via indices, as opposed to a sequentially-accessed linked list or other structure.
+          </p>
+          <p>
+            In this article, as I go through the three sorting algorithms, I will also discuss their common or uncommon properties including computational complexity, stability, memory usage, and adaptibility.
+          </p>
+          <p>
+            Bubble Sort is a simple sorting algorithm that works by comparing two items at a time in a list and swapping them if they are in the wrong order. It starts with the first element and compares it to the second. If the first is larger than the second, they are swapped. It then compares the second item to the third, the third to the fourth, etc, until the greatest value has sunk to the end of the list. Afterward, the process starts over again from the beginning and ends when the second-to-last element is compared, because the last element is already set in its final position. The process repeats until all of elements are in place.
+          </p>
+          <p>
+            We can look at a simple five item array to provide a visual for Bubble Sort.
+          </p>
+          <div class="code">
+            array = [7, 1, 4, 9, 2]<br>
+            // the first index is compared to the second<br>
+            // since 7 > 1, they are swapped<br>
+            [1, 7, 4, 9, 2]<br>
+            // next, 7 > 4<br>
+            [1, 4, 7, 9, 2]<br>
+            // however, 7 < 9 so no swap occurs at this step<br>
+            [1, 4, 7, 9, 2]<br>
+            // 9 > 2, so 9 moves to the last index<br>
+            [1, 4, 7, 2, 9]<br>
+          </div>
+          <p>
+            At this point, the process repeats for the first four elements only, because the highest element, the 9, is already in its final position at the end of the list.
+          </p>
+          <div class="code">
+            // 1 < 4, so no swap<br>
+            [1, 4, 7, 2, 9]<br>
+            // 4 < 7, so no swap<br>
+            [1, 4, 7, 2, 9]<br>
+            // 7 > 2, so they swap<br>
+            [1, 4, 2, 7, 9]<br>
+          </div>
+          <p> And finally: </p>
+          <div class="code">
+            // 1 < 4, so no swap<br>
+            [1, 4, 2, 7, 9]<br>
+            // 4 > 2, swap<br>
+            [1, 2, 4, 7, 9]<br>
+            // 1 < 2, so no swap<br>
+            [1, 2, 4, 7, 9]<br>
+          </div>
+          <p> Here is the basic code for Bubble Sort in JavaScript:</p>
+          <div class="code">
+            function bubble(array){<br>
+              &nbsp;&nbsp;var length = array.length;<br>
+              &nbsp;&nbsp;for (var i = 0; i < length; i++) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;for (var j = 0; j < (length - i - 1); j++) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//if first element is greater than next element<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (array[j] > array[j+1]) {<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//swap elements by creating temp var<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var temp = array[j];<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array[j] = array[j+1];<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array[j+1] = temp;<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+              &nbsp;&nbsp;}<br>
+            }<br>
+          </div>
+          <p>
+            The nested for loops above are a red flag when it comes to describing how expensive the algorithm is. The first time Bubble Sort makes its way through the array, it makes <span class="solocode">(n-1)</span> comparisons between pairs, where <span class="solocode">n</span> is the length of the array. The second time, it makes <span class="solocode">(n-2)</span> comparisons since the final element is already in place. Calculating out the number of steps, we get <br><span class="solocode">(n-1) + (n-2) + (n-3) + ... + 1 = n*(n-1)/2 = n<sup>2</sup>/2 - n/2</span> comparisons. For large datasets and independent of computing power, this algorithm as has a big O complexity of <span class="solocode">n<sup>2</sup></span>. Thus, as the length of the array grows, the proportional running time of this algorithm in the worst-case is quadratic.
+          </p>
+          <p>
+            Bubble Sort is a stable algorithm, which means that two elements that have the same value would remain in the same order relative to each other throughout - they would never cross paths or be swapped. Bubble Sort's memory usage is no larger than the original array, because the swaps are essentially taking place within the array with the help of one temporary variable. One redeeming feature of Bubble Sort is that it can be tweaked to detect if a list is already sorted or mostly sorted. By adding a boolean variable to check if any swaps are made in a pass, it will save the effort of continuing to go through the data if it is already in order. Not all algorithms are able to adapt in this manner!  Unfortunately, due to it's slow average running time, and due to a large number of other sorting options available, Bubble Sort is rarely used in practice anymore. Next up, Merge Sort!
+          </p>
+          <p>
+            Merge Sort is an efficient sorting algorithm that runs faster than Bubble Sort's quadratic time in even the worst-case. It works by dividing up the data into halves until each element is in its own sublist. Then the algorithm recursively merges subjlists back together into sorted sublists until there is only one list left. Here are the steps that Merge Sort takes when it sorts a list:
+          </p>
+          <div class="code">
+            array = [7, 1, 4, 5, 10, 2, 3, 9]<br>
+            // divide the list into two sublists<br>
+            7 1 4 5 &nbsp;&nbsp;&nbsp;&nbsp; 10 2 3 9<br>
+            // divide sublists into smaller sublists<br>
+            7 1 &nbsp;&nbsp; 4 5 &nbsp;&nbsp; 10 2 &nbsp;&nbsp;3 9<br>
+            // and divide those...<br>
+            7&nbsp;&nbsp;1&nbsp;&nbsp;4&nbsp;&nbsp;5&nbsp;&nbsp;10&nbsp;&nbsp;2&nbsp;&nbsp;3&nbsp;&nbsp;9<br>
+            // now, "merge" the first two sublists into a sorted pair<br>
+            1 7 &nbsp;&nbsp;4&nbsp;&nbsp;5&nbsp;&nbsp;10&nbsp;&nbsp;2&nbsp;&nbsp;3&nbsp;&nbsp;9<br>
+            // and merge the other pairs as well<br>
+            1 7 &nbsp;&nbsp; 4 5 &nbsp;&nbsp; 2 10&nbsp;&nbsp; 3 9<br>
+            // now, merge the sublist pairs into sorted quads<br>
+            1 4 5 7 &nbsp;&nbsp;&nbsp;&nbsp; 2 3 9 10<br>
+            // finally, merge the two quads back into a sorted list<br>
+            1 2 3 4 5 7 9 10<br>
+          </div>
+          <p>
+            The merging works by simply comparing the first element in each sublist against one another. If the first element from the left is smaller, then the next comparison will be between the second element from the left sublist and the first from the right. The sort can be coded to be stable by always taking the element from the left sublist when the values are equal - that way the original order of equal values does not change.
+          </p>
+            <p> The code for Merge Sort is as follows: </p>
+          <div class="code">
+            function merge(left, right) {<br>
+              &nbsp;&nbsp;var result = [];<br>
+              &nbsp;&nbsp;//do comparisons while both sublists still have elements<br>
+              &nbsp;&nbsp;while (left.length && right.length) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;if (left[0] <= right[0]) {<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.push(left.shift());<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;} else {<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.push(right.shift());<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+              &nbsp;&nbsp;}<br>
+              &nbsp;&nbsp;//once one sublist is empty, only take elements from other list<br>
+              &nbsp;&nbsp;while (left.length)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;result.push(left.shift());<br>
+              &nbsp;&nbsp;while (right.length)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;result.push(right.shift());<br>
+<br>
+              &nbsp;&nbsp;return result;<br>
+            }<br>
+<br>
+            function mergeSort(array) {<br>
+              &nbsp;&nbsp;if (array.length < 2) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return array;<br>
+              &nbsp;&nbsp;}<br>
+              &nbsp;&nbsp;//divide list in half<br>
+              &nbsp;&nbsp;var middle = Math.floor(array.length/2);<br>
+              &nbsp;&nbsp;var left = array.slice(0, middle);<br>
+              &nbsp;&nbsp;var right = array.slice(middle);<br>
+<br>
+              &nbsp;&nbsp;//mergeSort will continue to be called<br>
+              &nbsp;&nbsp;//dividing up the sublists<br>
+              &nbsp;&nbsp;//until the sublists are < 2 in length<br>
+              &nbsp;&nbsp;return merge(mergeSort(left), mergeSort(right));<br>
+            }<br>
+          </div>
+          <p>
+            The <span class="solocode">mergeSort</span> function is responsible for recursively splittng up the original data in sublists until all sublists are less than length 2. The <span class="solocode">merge</span> function compares the first index of each sublist against each other. Once one list is empty, it knows to just pull the remaining elements from the non-empty sublist.
+          </p>
+          <p>
+            The merging of the sublists takes linear time, so <span class="solocode">n</span> where <span class="solocode">n</span> is the length of the array. If <span class="solocode">T(n)</span> is the number of comparisons to mergeSort an input of size <span class="solocode">n</span>, that should be equal to <span class="solocode">T(n/2) + T(n/2) + n</span> for the left half, right half, and merging, respectively. If we calculate out this recursive relation, we eventually end up with <span class="solocode">T(n) = n + nlogn = O(nlogn)</span>. Merge Sort works in linearithmic time in the worst case, faster than Bubble Sort's quadratic time.
+          </p>
+          <p>
+            One major drawback to Merge Sort is that it takes up a lot of memory; the algorithm as it was originally introduced creates new space for all of its elements as it is merging its sublists. The extra memory usage is <span class="solocode">n</span>, the length of the original data. (As a reminder, Bubble Sort sorted the items in place.) As mentioned previously, Merge Sort is usually coded as a stable algorithm. As long as the element from the left sublist is taken in the event of a tie, no equal valued elements will cross paths during the sort. As it is coded above, there is limited adaptability. So if the dataset is already in order, the functions above will still go through the process of dividing up the original dataset and merging, wasting resources.
+          </p>
+          <p>
+            Merge Sort is a very important sorting algorithm today. Although it was created in 1945 originally, it is still widely used. Many tweaks have been implemented to improve upon Merge Sort's initial deficiencies, and many newer sorting algorithms either use Merge Sort or features of Merge Sort for certain datasets. For example, Timsort is a hybrid algorithm that combines ideas from Merge Sort as well as Insertion Sort, and it is used as the default built-in sort for Android, Java, and Python in certain situations. Oddly enough, different languages use different default sorting algorithms under the hood of different built-in methods, and some languages may use multiple depending on the situation. Java does use Merge Sort for objects. C++ and Python use Merge Sort when a stable sort is needed. And Firefox uses Merge Sort for JavaScript. Merge Sort is a good choice for linked lists also, where the data can only be accessed sequentially, whereas some other sorting algorithms may be unable to sort linked lists altogether. Of course, a programmer can always code a sorting function however she wants to in order to avoid using the built-in sorting methods for that language!
+          </p>
+          <p>
+            Lastly, I will talk about Quick Sort. Quick Sort is often faster than Merge Sort in practice when sorting arrays, and it uses less memory than Merge Sort. As you will see, it is not a stable sort, which means that equal-valued items can cross each other from their initial position. Chrome uses Quick Sort for JavaScript, and Unix, C, Python, Java, and Matlab all use Quick Sort in certain situations as well.
+          </p>
+          <p>
+            Quick Sort works by partitioning the original array around a pivot point. For the algorithm to work well, the pivot element ought to be close to the median of all the values in the array. (There are minor coding improvements to assure a good value without taking up too much time.) Once a pivot point is selected, the algorithm starts from both ends of the array and moves inward. When an element from the left mark is found that is greater than the pivot element, AND an element on the right is found to be less than the pivot element, they are swapped. When the left mark and right mark cross, the pivot is swapped with the right mark (now on the left). At this point, all items to the left of the original pivot will be less than the pivot, and all items to the right will be greater. Now, Quick Sort is performed on each half, recursively until the halves are less than two in length. Here is what it looks like:
+          </p>
+          <div class="code">
+            [5, 2, 9, 0, 7, 3, 4, 6, 1]<br>
+            // 5 is selected as the pivot element<br>
+            // the left mark begins at index 1, moving to the right<br>
+            // the right mark begins at the last index, moving left<br>
+            [5, <span class="red">2</span>, 9, 0, 7, 3, 4, 6, <span class="red">1</span>]<br>
+            // 2 < 5, so the left mark moves right one spot<br>
+            [5, 2, <span class="red">9</span>, 0, 7, 3, 4, 6, <span class="red">1</span>]<br>
+            // 9 > 5, so the left mark stays put<br>
+            [5, 2, <span class="red">9</span>, 0, 7, 3, 4, 6, <span class="red">1</span>]<br>
+            // 1 < 5, so the right mark and left mark switch places<br>
+            [5, 2, <span class="red">1</span>, 0, 7, 3, 4, 6, <span class="red">9</span>]<br>
+            // the process continues<br>
+            // 0 < 5 and 6 > 5, so both marks tick<br>
+            [5, 2, 1, <span class="red">0</span>, 7, 3, 4, <span class="red">6</span>, 9]<br>
+            [5, 2, 1, 0, <span class="red">7</span>, 3, <span class="red">4</span>, 6, 9]<br>
+            // 4 < 5 and 7 > 5, so they are swapped<br>
+            [5, 2, 1, 0, <span class="red">4</span>, 3, <span class="red">7</span>, 6, 9]<br>
+            // now the marks cross<br>
+            [5, 2, 1, 0, 4, <span class="red">3</span>, <span class="red">7</span>, 6, 9]<br>
+            // so the pivot is switched<br>
+            [3, 2, 1, 0, 4, <span class="red">5</span>, 7, 6, 9]<br>
+          </div>
+          <p>
+            At this point, all the values to the left of the 5 are less than 5, and all the values to the right are greater. Now, Quick Sort is performed again on each half. The code is as follows:
+          </p>
+          <div class="code">
+            function quickSort(array, left, right) {<br>
+                &nbsp;&nbsp;var pivot = array[Math.floor((left+right)/2)];<br>
+                &nbsp;&nbsp;var i = left;<br>
+                &nbsp;&nbsp;var j = right;<br>
+                &nbsp;&nbsp;var temp;<br>
+                &nbsp;&nbsp;while (i <= j) {<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;while (array[i] < pivot)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i++;<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;while (array[j] > pivot)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j--;<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;if (i <= j) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;temp = array[i];<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array[i] = array[j];<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array[j] = temp;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i++;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j--;<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;if (left < j)<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;quickSort(array, left, j);<br>
+                &nbsp;&nbsp;if (i < right)<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;quickSort(array, i, right);<br>
+              &nbsp;&nbsp;return array;<br>
+            }<br>
+          </div>
+          <p>
+            Again, with proper implementation Quick Sort often works faster than Merge Sort, though usually still in linearithmic time. Also, there are many different ways to code Quick Sort, especially in different languages. In the above code, the pivot is actually taken from the middle of the array, not the beginning. Some programmers also simplify their code by creating arrays for the left and right halves, though obviously at the expense of doubling their space usage. When using the first index as the pivot, one technique is to actually shuffle the array at the beginning of the algorithm, which (almost) guarantees that the array is not already sorted. If the array were already sorted, the pivot would consistently be the lowest element, and the algorithm would degrade to quadratic time.
+          </p>
+          <p>
+            It is important to realize that there are dozens of sorting algorithms, and many improvements have been made upon existing ones. Some sorting algorithms have been improved with multiple variations throughout decades of scrutiny. However, the backbone of Quick Sort and Merge Sort have each stood the test of time and they are both very common today - with implementation fixes to try and ensure best possible run times.
+          </p>
+          <p>
+            When large amounts of data need to be sorted and complexity, stability, memory usage, and adaptability are important, there are <a href="https://en.wikipedia.org/wiki/Sorting_algorithm">many sorting algorithms</a> from which to choose. Often, the best solution may be to use different algorithms in different situations. Learning about sorting algorithms is important to making the best decisions when built-in methods won't do, and it is a good introduction to the importance of algorithms in general.
+          </p>
+
+
+
+
+
+
+
+
+
+
+        </article>
+      </section>
+    </main>
+    <nav>
+      <a href="index.html">Blog Index</a>
+      <a href="hashes-objects.html">Previous Post</a>
+    </nav>
+    <!-- <section id="comments">
+      <h6>Comments?</h6>
+    </section> -->
+    <div id="profile">
+      <img src="../imgs/profile.png" alt="profile" class="homeprof"/>
+    </div>
+
+    <footer>
+      <a href="https://github.com/msosland"><img src="../imgs/github.png" alt="Github" id="github"></a>
+      <a href="https://www.linkedin.com/in/marshallsosland"><img src="../imgs/linkedin.png" alt="LinkedIn" id="linkedin"</a>
+      <a href="https://www.facebook.com/marshall.sosland"><img src="../imgs/facebook.png" alt="Facebook" id="facebook"</a>
+      <a href="https://twitter.com/MarshallOnEarth"><img src="../imgs/twitter.png" alt="Twitter" id="twitter"></a>
+    </footer>
+
+  </body>
+</html>

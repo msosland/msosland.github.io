@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<generator uri="http://jekyllrb.com" version="2.4.0">Jekyll</generator>
+<link href="http://msosland.github.io/feed.xml" rel="self" type="application/atom+xml" />
+<link href="http://msosland.github.io/" rel="alternate" type="text/html" />
+<updated>2016-01-18T08:23:16-06:00</updated>
+<id>http://msosland.github.io/</id>
+<title>Marshall Sosland</title>
+<subtitle>Web Developer from Earth</subtitle>
+<entry>
+<title>Still trying to figure this out</title>
+<link href="http://msosland.github.io/Test/" rel="alternate" type="text/html" title="Still trying to figure this out" />
+<published>2016-01-18T00:00:00-06:00</published>
+<updated>2016-01-18T00:00:00-06:00</updated>
+<id>http://msosland.github.io/Test</id>
+<content type="html" xml:base="http://msosland.github.io/Test/">&lt;p&gt;I am really not enjoying this....&lt;/p&gt;
+</content>
+<summary>I am really not enjoying this....</summary>
+</entry>
+<entry>
+<title>Website Under Temporary Construction!</title>
+<link href="http://msosland.github.io/Hello-World/" rel="alternate" type="text/html" title="Website Under Temporary Construction!" />
+<published>2016-01-15T00:00:00-06:00</published>
+<updated>2016-01-15T00:00:00-06:00</updated>
+<id>http://msosland.github.io/Hello-World</id>
+<content type="html" xml:base="http://msosland.github.io/Hello-World/">&lt;p&gt;This site is in the process of being updated with Jekyll and Bootstrap. Please come back soon!&lt;/p&gt;
+</content>
+<summary>This site is in the process of being updated with Jekyll and Bootstrap. Please come back soon!</summary>
+</entry>
+</feed>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DBC Picture Me Bloggin'</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/default.css">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/blog.css">
+  </head>
+  <body>
+    <header>
+        <a href="../index.html" class="me">Home</a>
+        <a href="#" class="me">Resume</a>
+        <a href="../contacts.html" class="me">Contact</a>
+        <a href="../projects/index.html" class="portfolio">Projects</a>
+        <a href="index.html" class="portfolio">Technical Blog</a>
+    </header>
+
+    <main>
+      <section class="content">
+        <h1>Know Your Boundaries</h1>
+        <h2>[Margin, Padding, and Border in HTML/CSS]</h2>
+
+
+        <article id="article">
+          <h4>November 23, 2015 </h4>
+          <p>
+            Using CSS, a developer may adjust the margin, border, or padding of various HTML elements. In today's piece, I am going to discuss these properties and their differences. Hold on to your breaches!
+          </p>
+          <p> The following image is from <a href="http://www.w3schools.com/css/css_boxmodel.asp">www.w3schools.com/css/css_boxmodel.asp</a>:
+          <img src="../imgs/boxmodel.png" alt="box-model" class="cssbox">
+          <p>
+            Each HTML element can be thought of as a box with three potential layers around the content. The outermost layer is the margin. The margin is transparent, and it is set to determine how much space exists between the edge of the element and any other nearby elements. Some HTML elements, such as headings, have pre-set margins, but they can all be overwritten (or set to 0) within a CSS stylesheet. There are a few different ways to specify margins.
+          </p>
+          <div class="code">
+              p { <br>
+              margin: 10px; <br>
+              } <br>
+          </div>
+          <p>
+            In the above code, the margin is set to 10 pixels for all for sides of the element. To adjust individual margins, the following technique is used:
+          </p>
+          <div class="code">
+              p { <br>
+              margin-top: 10px; <br>
+              margin-right: 20px; <br>
+              margin-bottom: 5px; <br>
+              margin-left: 18px; <br>
+              }
+          </div>
+          <p> The above can be shortened to: </p>
+          <div class="code">
+              p { <br>
+              margin: 10px 20px 5px 18px; <br>
+              } <br>
+          </div>
+          <p>
+            An important feature of vertical margins is that if there is no other content, border, or padding between two elements, their vertical margins will collapse to the greater of the two specified margins. For example, if one element has a bottom margin of 10 pixels, and an element right below it has a top margin of 30 pixels, the margin between them will be 30 pixels, not 40. Intuitively, if the top element calls for 10 vertical pixels of space between it and the next element, there is no need to add 10 pixels of space when the element below is already giving it 30 pixels of vertical space.
+          </p>
+          <p>
+            Alright! Time to peel a layer off of our HTML element onion. Next up: Borders.
+          </p>
+            The border goes around the padding and content, and inside the space designated by the margin. The outermost edge of the border is where the margin begins. The border may be thin or thick, solid or dashed, embedded, ridged, or one of a number of other descriptors with various properties. It is not a required property: a border may be hidden, set to none, or not described at all, which will have the same result.
+          </p>
+          <p> A border may be specified as follows: </p>
+          <div class="code">
+              p { <br>
+              border-width: 2px; <br>
+              border-color: green; <br>
+              border-style: solid; <br>
+              } <br>
+          </div>
+          <p> or </p>
+          <div class="code">
+              p { <br>
+              border: 2px solid green; <br>
+              } <br>
+          </div>
+          <p>
+            Each side of the border may also be set to a different color, for example, by using the property keys <span> border-top-color:</span> or <span>border-right-color</span> , for example. Borders may also be rounded or made into elliptical shapes, and it can even be made up of slices of an image! There are many ways to specify exactly how a border should look; for more details, the internet is your friend!
+          </p>
+            Last but not least, the padding is our final layer around the content of our HTML element. It is another transparent layer, similar to the margin. The padding sets the amount of space between the content and the border. The CSS looks to similar to margin:
+          </p>
+          <div class="code">
+              p { <br>
+              padding-top: 10px; <br>
+              padding-right: 20px; <br>
+              padding-bottom: 5px; <br>
+              padding-left: 18px; <br>
+              } <br>
+          </div>
+          <p> Which can again be shortened to: </p>
+          <div class="code">
+              p { <br>
+              padding: 10px 20px 5px 18px; <br>
+              } <br>
+          </div>
+          <p> For a quick visual, here is an example from <a href="http://www.w3.org/wiki/CSS/Training/padding_and_margin">www.w3.org/wiki/CSS/Training/padding_and_margin</a>: </p>
+          <img src="../imgs/padding.png" alt="padding" class="cssbox">
+          <p>
+            Okay! I think you have read enough about margin, border, and padding for one day. Hopefully you now have a good foundation for managing the edges of all of your HTML elements! Until next time...
+          </p>
+
+        </article>
+      </section>
+    </main>
+    <nav>
+      <a href="index.html">Blog Index</a>
+      <a href="git.html">Previous Post</a>
+      <a href="arrays-hashes.html">Next Post</a>
+    </nav>
+    <!-- <section id="comments">
+      <h6>Comments?</h6>
+    </section> -->
+    <div id="profile">
+      <img src="../imgs/profile.png" alt="profile" class="homeprof"/>
+    </div>
+
+    <footer>
+      <a href="https://github.com/msosland"><img src="../imgs/github.png" alt="Github" id="github"></a>
+      <a href="https://www.linkedin.com/in/marshallsosland"><img src="../imgs/linkedin.png" alt="LinkedIn" id="linkedin"></a>
+      <a href="https://www.facebook.com/marshall.sosland"><img src="../imgs/facebook.png" alt="Facebook" id="facebook"></a>
+      <a href="https://twitter.com/MarshallOnEarth"><img src="../imgs/twitter.png" alt="Twitter" id="twitter"></a>
+    </footer>
+
+  </body>
+</html>
