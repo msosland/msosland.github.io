@@ -72,7 +72,7 @@ header>a {
   text-decoration: none;
 }
 
-#map, #horizon, #books, #branch, #classroom, #potato, #sorting, #cheatsheet{
+#map, #horizon, #books, #branch, #classroom, #potato, #sorting, #cheatsheet, #building{
   height: 150px;
   width: 180px;
 }
@@ -150,6 +150,15 @@ a:hover {
   margin: auto;
 }
 
+nav>a {
+  text-decoration: none;
+  padding: 25px 2%;
+  color: #004b7e;
+  font-family: sans-serif;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
 @media screen and (max-width: 600px) {
   header {
     width: 90%;
@@ -173,7 +182,7 @@ a:hover {
   .indextable {
     width: 90%;
   }
-  #map, #horizon, #books, #branch, #classroom, #potato, #sorting,#cheatsheet, .gfx, .desc {
+  #map, #horizon, #books, #branch, #classroom, #potato, #sorting,#cheatsheet, #building, .gfx, .desc {
   height: 120px;
   width: 120px;
 }
